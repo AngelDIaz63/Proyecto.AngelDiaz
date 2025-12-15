@@ -1,0 +1,17 @@
+@functions {
+    private readonly PrestamosRepository _db = new LibrosRepository();
+    public void OnGet() { }
+    public IActionResult OnPost(string Titulo, string Autor, string Editorial, string ISBN)
+    {
+        var libro = new Libro
+        {
+            Id = Guid.NewGuid(),    
+            Titulo = Titulo,
+            Autor = Autor,
+            Editorial = Editorial,
+            ISBN = ISBN
+        };    
+        _db.Insert(libro);
+        return RedirectToPage("/Prestamos/Index");
+    }
+}
